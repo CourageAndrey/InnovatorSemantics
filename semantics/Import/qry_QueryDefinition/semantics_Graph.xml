@@ -1,0 +1,74 @@
+﻿<AML>
+ <Item type="qry_QueryDefinition" id="1C7D8D4C42E846269ABEF899974C2039" action="add">
+  <name>semantics_Graph</name>
+  <Relationships>
+   <Item type="qry_QueryItem" id="B7BEF96302BE40C5A0D90514361BF2B3" action="add">
+    <item_type keyed_name="semantics_Object" type="ItemType" name="semantics_Object">DBCA8FF913FA452EBCB197E405ED54FD</item_type>
+    <ref_id>A6339E4AEDAB4248983E2843CE4AA6FA</ref_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="semantics_Graph" type="qry_QueryDefinition">1C7D8D4C42E846269ABEF899974C2039</source_id>
+    <alias>semantics_Object</alias>
+    <Relationships>
+     <Item type="qry_QueryItemSelectProperty" id="716C9F51AFCE486B9A2742870813BCA7" action="add">
+      <property_name>id</property_name>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="semantics_Object" type="qry_QueryItem">B7BEF96302BE40C5A0D90514361BF2B3</source_id>
+     </Item>
+     <Item type="qry_QueryItemSelectProperty" id="2D75B4836A0042EDA3C4D767DD286487" action="add">
+      <property_name>classification</property_name>
+      <sort_order>256</sort_order>
+      <source_id keyed_name="semantics_Object" type="qry_QueryItem">B7BEF96302BE40C5A0D90514361BF2B3</source_id>
+     </Item>
+     <Item type="qry_QueryItemSelectProperty" id="CA955274D88F4535B6959BD604DBBB18" action="add">
+      <property_name>keyed_name</property_name>
+      <sort_order>384</sort_order>
+      <source_id keyed_name="semantics_Object" type="qry_QueryItem">B7BEF96302BE40C5A0D90514361BF2B3</source_id>
+     </Item>
+     <Item type="qry_QueryItemSelectProperty" id="3A2523971A7142A996C8CE76ABE31073" action="add">
+      <property_name>text</property_name>
+      <sort_order>512</sort_order>
+      <source_id keyed_name="semantics_Object" type="qry_QueryItem">B7BEF96302BE40C5A0D90514361BF2B3</source_id>
+     </Item>
+    </Relationships>
+   </Item>
+   <Item type="qry_QueryItem" id="1B4A158DCF024231888161AA81D7F7C0" action="add">
+    <item_type keyed_name="semantics_Relationship" type="ItemType" name="semantics_Relationship">868516EEDFBE4E09A238CDD5C6A501BD</item_type>
+    <ref_id>2CA4157F541544B28FFC3646784CD878</ref_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="semantics_Graph" type="qry_QueryDefinition">1C7D8D4C42E846269ABEF899974C2039</source_id>
+    <alias>semantics_Relationship</alias>
+   </Item>
+   <Item type="qry_QueryReference" id="93A694773BAB4AA8B8DB4706C583B656" action="add">
+    <child_ref_id>A6339E4AEDAB4248983E2843CE4AA6FA</child_ref_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="semantics_Graph" type="qry_QueryDefinition">1C7D8D4C42E846269ABEF899974C2039</source_id>
+   </Item>
+   <Item type="qry_QueryReference" id="14C8E03365D5448EAAF67206C7A45426" action="add">
+    <child_ref_id>2CA4157F541544B28FFC3646784CD878</child_ref_id>
+    <filter_xml><![CDATA[<condition>
+	<eq>
+		<property query_items_xpath="parent::Item" name="id" />
+		<property name="source_id" />
+	</eq>
+</condition>]]></filter_xml>
+    <parent_ref_id>A6339E4AEDAB4248983E2843CE4AA6FA</parent_ref_id>
+    <ref_id>2A8D5CE22CFB4454A08C01529BD759FF</ref_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="semantics_Graph" type="qry_QueryDefinition">1C7D8D4C42E846269ABEF899974C2039</source_id>
+   </Item>
+   <Item type="qry_QueryReference" id="5ACC03EC075D437D963CA19709CE5374" action="add">
+    <child_ref_id>A6339E4AEDAB4248983E2843CE4AA6FA</child_ref_id>
+    <filter_xml><![CDATA[<condition>
+	<eq>
+		<property query_items_xpath="parent::Item" name="related_id" />
+		<property name="id" />
+	</eq>
+</condition>]]></filter_xml>
+    <parent_ref_id>2CA4157F541544B28FFC3646784CD878</parent_ref_id>
+    <ref_id>B0A18DEBA72E43AEA0C88F32AF5C7B52</ref_id>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="semantics_Graph" type="qry_QueryDefinition">1C7D8D4C42E846269ABEF899974C2039</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

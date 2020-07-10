@@ -1,0 +1,101 @@
+﻿<AML>
+ <Item type="Method" id="DBB51E9C83394C7C9B36F0E4FDA8C042" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator innovator = this.getInnovator();
+
+// get source ID and check if it is not empty
+string paramSourceId = this.getProperty("source_id");
+if (string.IsNullOrEmpty(paramSourceId))
+{
+    throw new ArgumentNullException("source_id");
+}
+
+// get related ID and check if it is not empty
+string paramRelatedId = this.getProperty("related_id");
+if (string.IsNullOrEmpty(paramRelatedId))
+{
+    throw new ArgumentNullException("related_id");
+}
+
+// get modus relationship name and check if it is not empty
+string paramRelationshipTypeName = this.getType();
+if (string.IsNullOrEmpty(paramRelationshipTypeName))
+{
+    throw new ArgumentNullException("type");
+}
+
+// get modus relationship itemtype and verify it is relationship
+Item relationshipTypeItemTypeRequestItem = innovator.newItem("ItemType", "get");
+relationshipTypeItemTypeRequestItem.setAttribute("select", "is_relationship");
+relationshipTypeItemTypeRequestItem.setProperty("name", paramRelationshipTypeName);
+Item propertyRequestItem = innovator.newItem("Property", "get");
+propertyRequestItem.setAttribute("select", "name,data_type,data_source");
+propertyRequestItem.setAttribute("where", "[Property].[name] in ('source_id','related_id')");
+relationshipTypeItemTypeRequestItem.addRelationship(propertyRequestItem);
+
+Item relationshipTypeItemTypeItem = relationshipTypeItemTypeRequestItem.apply();
+if (relationshipTypeItemTypeItem.getProperty("is_relationship") != "1")
+{
+    throw new ArgumentNullException($"Item type '{paramRelationshipTypeName}' is not a relationship.");
+}
+
+// check, that source and related properties of modus relationship itemtype point to the same itemtype
+Item propetiesItem = relationshipTypeItemTypeItem.getRelationships("Property");
+if (propetiesItem.getItemCount() != 2)
+{
+    throw new ArgumentNullException($"Item type '{paramRelationshipTypeName}' has not got proper 'source_id' and 'related_id' properties.");
+}
+
+Item property1Item = propetiesItem.getItemByIndex(0);
+string property1ItemType = property1Item.getPropertyAttribute("data_source", "keyed_name");
+Item property2Item = propetiesItem.getItemByIndex(1);
+string property2ItemType = property2Item.getPropertyAttribute("data_source", "keyed_name");
+if (property1ItemType != property2ItemType)
+{
+    throw new ArgumentNullException($"Item types of source_id and related_id have to be the same, but are different: '{property1ItemType}', '{property2ItemType}'.");
+}
+string paramItemTypeName = property1ItemType;
+
+// create reusable relationships request item
+Item requestItem = innovator.newItem(paramRelationshipTypeName, "get");
+requestItem.setAttribute("select", "related_id");
+foreach (XmlNode propertyNode in this.node.ChildNodes)
+{
+    requestItem.node.AppendChild(requestItem.dom.ImportNode(propertyNode, true));
+}
+
+// iteratively request relationships
+List<string> itemsToVisitOnCurrentStep = new List<string> { paramSourceId };
+ICollection<string> visitedItems = new HashSet<string>();
+while (itemsToVisitOnCurrentStep.Count > 0)
+{
+    List<string> itemsToVisitOnNextStep = new List<string>();
+    
+    requestItem.setProperty("source_id", "'" + string.Join("','", itemsToVisitOnCurrentStep) + "'");
+    requestItem.setPropertyAttribute("source_id", "condition", "in");
+    Item stepItem = requestItem.apply();
+    
+    for (int index = 0, count = stepItem.getItemCount(); index < count; index++)
+    {
+        string relatedId = stepItem.getItemByIndex(index).getProperty("related_id");
+        if (relatedId == paramRelatedId)
+        {
+            return innovator.newResult("TRUE");
+        }
+        if (!visitedItems.Contains(relatedId))
+        {
+            visitedItems.Add(relatedId);
+            itemsToVisitOnNextStep.Add(relatedId);
+        }
+    }
+    
+    itemsToVisitOnCurrentStep = itemsToVisitOnNextStep;
+}
+
+
+return innovator.newResult("FALSE");
+]]></method_code>
+  <method_type>C#</method_type>
+  <name>semantics_ModusPopens</name>
+ </Item>
+</AML>

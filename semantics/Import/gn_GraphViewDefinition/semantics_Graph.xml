@@ -1,0 +1,37 @@
+﻿<AML>
+ <Item type="gn_GraphViewDefinition" id="EA6DF022A03349A9AD9CB57210170E1C" action="add">
+  <query_definition_id keyed_name="semantics_Graph" type="qry_QueryDefinition">1C7D8D4C42E846269ABEF899974C2039</query_definition_id>
+  <name>semantics_Graph</name>
+  <Relationships>
+   <Item type="gn_GraphViewConnector" id="AB46D13EF7384417A680F8707D4580A7" action="add">
+    <connector_type_id keyed_name="semantics_Object_semantics_Object_semantics_Graph_1" type="gn_ConnectorType">6A489BF36E7C4B6AA5BDE6E5822822F5</connector_type_id>
+    <end_query_item_id keyed_name="semantics_Relationship" type="qry_QueryItem">1B4A158DCF024231888161AA81D7F7C0</end_query_item_id>
+    <int_query_reference_path>2A8D5CE22CFB4454A08C01529BD759FF/B0A18DEBA72E43AEA0C88F32AF5C7B52</int_query_reference_path>
+    <sort_order>128</sort_order>
+    <source_endpoint_id keyed_name="02404D4287A14B57A0EE3E17344A39EF" type="gn_GraphViewNode">02404D4287A14B57A0EE3E17344A39EF</source_endpoint_id>
+    <source_id keyed_name="semantics_Graph" type="gn_GraphViewDefinition">EA6DF022A03349A9AD9CB57210170E1C</source_id>
+    <start_query_item_id keyed_name="semantics_Relationship" type="qry_QueryItem">1B4A158DCF024231888161AA81D7F7C0</start_query_item_id>
+    <target_endpoint_id keyed_name="02404D4287A14B57A0EE3E17344A39EF" type="gn_GraphViewNode">02404D4287A14B57A0EE3E17344A39EF</target_endpoint_id>
+   </Item>
+   <Item type="gn_GraphViewItemType" id="9CC30387899C4769BC2027962EA94EEA" action="add">
+    <entry_graph_view_node_id keyed_name="02404D4287A14B57A0EE3E17344A39EF" type="gn_GraphViewNode">02404D4287A14B57A0EE3E17344A39EF</entry_graph_view_node_id>
+    <related_id keyed_name="semantics_Object" type="ItemType" name="semantics_Object">DBCA8FF913FA452EBCB197E405ED54FD</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="semantics_Graph" type="gn_GraphViewDefinition">EA6DF022A03349A9AD9CB57210170E1C</source_id>
+   </Item>
+   <Item type="gn_GraphViewNode" id="02404D4287A14B57A0EE3E17344A39EF" action="add">
+    <end_query_item_id keyed_name="semantics_Object" type="qry_QueryItem">B7BEF96302BE40C5A0D90514361BF2B3</end_query_item_id>
+    <node_type_id keyed_name="semantics_Object_semantics_Graph" type="gn_NodeType">78B8A565460F403B8B56A3BBAFB4778D</node_type_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="semantics_Graph" type="gn_GraphViewDefinition">EA6DF022A03349A9AD9CB57210170E1C</source_id>
+    <start_query_item_id keyed_name="semantics_Object" type="qry_QueryItem">B7BEF96302BE40C5A0D90514361BF2B3</start_query_item_id>
+   </Item>
+   <Item type="gn_GVDefaultCard" id="56A7A670A09D45D69CDB2FB6CDAD613B" action="add">
+    <itemtype_id keyed_name="semantics_Object" type="ItemType" name="semantics_Object">DBCA8FF913FA452EBCB197E405ED54FD</itemtype_id>
+    <related_id keyed_name="semantics_Object_semantics_Graph" type="gn_ViewCard">E5C6B1B2919441A0AACCD2BA3C30389C</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="semantics_Graph" type="gn_GraphViewDefinition">EA6DF022A03349A9AD9CB57210170E1C</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>
